@@ -2,7 +2,7 @@
 # @author: Brinnatt
 # @repo: https://github.com/brinnatt/kubeauto
 
-# nothing changed for once
+# nothing changed for twice
 FROM brinnatt/ansible:2.18.6
 
 # KUBEAUTO will be set by build-args
