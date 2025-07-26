@@ -5,7 +5,7 @@
 FROM brinnatt/ansible:2.18.6
 
 # KUBEAUTO will be set by build-args
-ARG KUBEAUTO_VER=
+ARG KUBEAUTO_VER=""
 
 ENV TZ="Asia/Shanghai"
 
@@ -14,4 +14,6 @@ RUN set -x \
     && wget https://github.com/brinnatt/kubeauto/archive/refs/tags/"$KUBEAUTO_VER".tar.gz \
     && tar zxf "$KUBEAUTO_VER".tar.gz \
     && mv kubeauto-"$KUBEAUTO_VER" /usr/local/kubeauto \
-    && rm -rf "$KUBEAUTO_VER".tar.gz
+    && rm -rf "$KUBEAUTO_VER".tar.gz \
+
+CMD ["tail", "-f", "/dev/null"]
