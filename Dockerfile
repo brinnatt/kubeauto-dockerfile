@@ -17,7 +17,7 @@ RUN set -x \
     && cd kubeauto-"$KUBEAUTO_VER" \
     && python3 build.py \
     && mkdir -p /usr/local/kubeauto \
-    && cp -ar ./{playbooks,roles,example,dist} /usr/local/kubeauto/ \
+    && cp -ar playbooks roles example dist /usr/local/kubeauto/ \
     && rm -rf kubeauto-"$KUBEAUTO_VER" "$KUBEAUTO_VER".tar.gz
 
 CMD ["tail", "-f", "/dev/null"]
