@@ -3,7 +3,7 @@
 # @repo: https://github.com/brinnatt/kubeauto
 
 # nothing changed for twice
-FROM brinnatt/ansible:2.18.6
+FROM python:3.12.11
 
 # KUBEAUTO will be set by build-args
 ARG KUBEAUTO_VER=""
@@ -14,7 +14,10 @@ RUN set -x \
     # Downloading kubeauto
     && wget https://github.com/brinnatt/kubeauto/archive/refs/tags/"$KUBEAUTO_VER".tar.gz \
     && tar zxf "$KUBEAUTO_VER".tar.gz \
-    && mv kubeauto-"$KUBEAUTO_VER" /usr/local/kubeauto \
-    && rm -rf "$KUBEAUTO_VER".tar.gz
+    && cd kubeauto-"$KUBEAUTO_VER" \
+    && python3 build.py \
+    && mkdir -p /usr/local/kubeauto \
+    && cp -ar {playbooks,roles,example,dist} /usr/local/kubeauto/ \
+    && rm -rf kubeauto-"$KUBEAUTO_VER" "$KUBEAUTO_VER".tar.gz
 
 CMD ["tail", "-f", "/dev/null"]
