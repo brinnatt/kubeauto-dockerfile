@@ -2,7 +2,7 @@
 # @author: Brinnatt
 # @repo: https://github.com/brinnatt/kubeauto
 
-# nothing changed for twice
+# nothing changed for third
 FROM python:3.12.11
 
 # KUBEAUTO will be set by build-args
