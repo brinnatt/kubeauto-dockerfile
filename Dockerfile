@@ -12,13 +12,13 @@ ENV TZ="Asia/Shanghai"
 
 RUN set -x \
     # Downloading kubeauto
-    && wget https://github.com/brinnatt/kubeauto/archive/refs/tags/"$KUBEAUTO_VER".tar.gz \
-    && tar zxf "$KUBEAUTO_VER".tar.gz \
-    && cd kubeauto-"$KUBEAUTO_VER" \
+    && wget -O kubeauto.tar.gz https://github.com/brinnatt/kubeauto/archive/refs/tags/"$KUBEAUTO_VER".tar.gz \
+    && tar zxf kubeauto.tar.gz \
+    && cd kubeauto-"${KUBEAUTO_VER#v}" \
     && python3 build.py \
     && mkdir -p /usr/local/kubeauto \
     && cp -ar playbooks roles example dist /usr/local/kubeauto/ \
     && cd .. \
-    && rm -rf kubeauto-"$KUBEAUTO_VER" "$KUBEAUTO_VER".tar.gz
+    && rm -rf kubeauto-"${KUBEAUTO_VER#v}" kubeauto.tar.gz
 
 CMD ["tail", "-f", "/dev/null"]
